@@ -1,0 +1,145 @@
+{% extends "base-publicar-empleo.html" %}
+
+{% block title %}Jobboard{% endblock %}
+
+{% block content %}
+
+<div class="row">
+  <div class="col-sm-12 col-md-12">
+
+    <h1 class="page-header">Publicar Oferta de Empleo</h1>
+
+    <form action="{% url "empleos:new" %}" method="POST" role="form">
+      {% csrf_token %}
+
+      <h4 class="sub-header"><small style="color: #D35400;">Datos del empleo</small></h4>
+
+      {% if form.non_field_errors %}
+        <div class="form-group has-error has-feedback">
+          {% for error in form.non_field_errors %}
+            <span class="help-block">{{ error }}</span>
+          {% endfor %}
+        </div>
+      {% endif %}
+
+      {% if form.titulo.errors %}
+        <div class="form-group has-error has-feedback">
+      {% else %}
+      <div class="form-group">
+      {% endif %}
+        {{ form.titulo.label_tag }} {{ form.titulo }}
+        <p class="help-block">{{ form.titulo.help_text }}</p>
+        {% for error in form.nombre.errors %}
+        <span class="help-block">{{ error }}</span>
+        {% endfor %}
+      </div>
+
+      {% if form.categoria.errors %}
+        <div class="form-group has-error has-feedback">
+      {% else %}
+      <div class="form-group">
+      {% endif %}
+        {{ form.categoria.label_tag }}
+        {% for categoria in form.categoria %}
+          <label class="radio">
+            {{ categoria.tag }}
+            {{ categoria.choice_label }}
+          </label>
+        {% endfor %}
+        <p class="help-block">{{ form.categoria.help_text }}</p>
+        {% for error in form.categoria.errors %}
+        <span class="help-block">{{ error }}</span>
+        {% endfor %}
+      </div>
+
+      {% if form.ciudad.errors %}
+        <div class="form-group has-error has-feedback">
+      {% else %}
+      <div class="form-group">
+      {% endif %}
+        {{ form.ciudad.label_tag }} {{ form.ciudad }}
+        <p class="help-block">{{ form.ciudad.help_text }}</p>
+        {% for error in form.ciudad.errors %}
+        <span class="help-block">{{ error }}</span>
+        {% endfor %}
+      </div>
+
+      {% if form.descripcion.errors %}
+        <div class="form-group has-error has-feedback">
+      {% else %}
+      <div class="form-group">
+      {% endif %}
+        {{ form.descripcion.label_tag }} {{ form.descripcion }}
+        <p class="help-block">{{ form.descripcion.help_text }}</p>
+        {% for error in form.descripcion.errors %}
+        <span class="help-block">{{ error }}</span>
+        {% endfor %}
+      </div>
+
+      {% if form.forma_contacto.errors %}
+        <div class="form-group has-error has-feedback">
+      {% else %}
+      <div class="form-group">
+      {% endif %}
+        {{ form.forma_contacto.label_tag }} {{ form.forma_contacto }}
+        <p class="help-block">{{ form.forma_contacto.help_text }}</p>
+        {% for error in form.forma_contacto.errors %}
+        <span class="help-block">{{ error }}</span>
+        {% endfor %}
+      </div>
+
+      <h4 class="sub-header"><small style="color: #D35400;">Datos de la empresa</small></h4>
+
+      {% if form.nombre_empresa.errors %}
+        <div class="form-group has-error has-feedback">
+      {% else %}
+      <div class="form-group">
+      {% endif %}
+        {{ form.nombre_empresa.label_tag }} {{ form.nombre_empresa }}
+        <p class="help-block">{{ form.nombre_empresa.help_text }}</p>
+        {% for error in form.nombre_empresa.errors %}
+        <span class="help-block">{{ error }}</span>
+        {% endfor %}
+      </div>
+
+      {% if form.email_empresa.errors %}
+        <div class="form-group has-error has-feedback">
+      {% else %}
+      <div class="form-group">
+      {% endif %}
+        {{ form.email_empresa.label_tag }} {{ form.email_empresa }}
+        <p class="help-block">{{ form.email_empresa.help_text }}</p>
+        {% for error in form.email_empresa.errors %}
+        <span class="help-block">{{ error }}</span>
+        {% endfor %}
+      </div>
+
+      {% if form.telefono_empresa.errors %}
+        <div class="form-group has-error has-feedback">
+      {% else %}
+      <div class="form-group">
+      {% endif %}
+        {{ form.telefono_empresa.label_tag }} {{ form.telefono_empresa }}
+        <p class="help-block">{{ form.telefono_empresa.help_text }}</p>
+        {% for error in form.telefono_empresa.errors %}
+        <span class="help-block">{{ error }}</span>
+        {% endfor %}
+      </div>
+
+      {% if form.url_empresa.errors %}
+        <div class="form-group has-error has-feedback">
+      {% else %}
+      <div class="form-group">
+      {% endif %}
+        {{ form.url_empresa.label_tag }} {{ form.url_empresa }}
+        <p class="help-block">{{ form.url_empresa.help_text }}</p>
+        {% for error in form.url_empresa.errors %}
+        <span class="help-block">{{ error }}</span>
+        {% endfor %}
+      </div>
+
+      <button type="submit" class="btn btn-success">Publicar Empleo</button>
+    </form>
+  </div>
+</div>
+{% endblock %}

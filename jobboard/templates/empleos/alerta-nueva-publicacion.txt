@@ -1,0 +1,22 @@
+Hola,
+Se ha publicado una nueva oferta laboral en el tablero de anuncios.
+
+DATOS DEL EMPLEO
+Fecha: {{ empleo.fecha_creado | date:"SHORT_DATE_FORMAT" }}
+Título: {{ empleo.titulo }}
+Categoría: {{ empleo.categoria.nombre }}
+Ciudad: {{ empleo.ciudad.nombre }}
+
+Descripción:
+{{ empleo.descripcion|linebreaks }}
+
+Cómo la gente se postulará a este empleo:
+{{ empleo.forma_contacto }}
+
+Empresa: {{ empleo.nombre_empresa }}
+Email: {{ empleo.email_empresa }}
+Teléfono: {{ empleo.telefono_empresa }}
+Sitio Web: {{ empleo.url_empresa }}
+
+Puede ver la publicación en el enlace:
+{{ empleo.get_absolute_url }}

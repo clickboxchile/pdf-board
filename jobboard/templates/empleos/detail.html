@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+
+{% block title %}{{ empleo.nombre_empresa }} busca {{ empleo.titulo }}{% endblock %}
+{% block description %}Como postular para el empleo: {{ empleo.forma_contacto }}{% endblock %}
+{% block twitter-title %}{{ empleo.nombre_empresa }} busca {{ empleo.titulo }}{% endblock %}
+{% block twitter-description %}Como postular para el empleo: {{ empleo.forma_contacto }}{% endblock %}
+{% block facebook-title %}{{ empleo.nombre_empresa }} busca {{ empleo.titulo }}{% endblock %}
+{% block facebook-url %}http://domain.com{{ empleo.get_absolute_url }}{% endblock %}
+{% block facebook-description %}Como postular para el empleo: {{ empleo.forma_contacto }}{% endblock %}
+
+{% block content %}
+<div class="row">
+  <div class="col-sm-12 col-md-12">
+    <h1 class="page-header">{{ empleo.titulo }}</a>
+</h1>
+ 
+    <h3 class="detalle-empleo-fecha-publicado">Publicado: {{ empleo.fecha_creado|date:"j-F"|upper }}</h3>
+    <address>
+
+      <strong>Empresa: {{ empleo.nombre_empresa }}</strong><br>
+      Ciudad: {{ empleo.ciudad }}<br>
+      Email: <a href="{{ empleo.id }}">{{ empleo.id }}</a><br>
+      Teléfono: {{ empleo.telefono_empresa }}<br>
+      Web: <a href="{{ empleo.url_empresa }}">{{ empleo.url_empresa }}</a>
+    </address>
+
+    <p class="text-justify">{{ empleo.descripcion|linebreaks }}</p>
+    <div class="clearfix" style="margin-bottom: 9px;"></div>
+    <div class="cta-forma-contacto">
+        <h3>CÓMO POSTULAR PARA EL EMPLEO</h3>
+        <p>{{ empleo.forma_contacto }}</p>
+
+    </div>
+
+
+  </div>
+</div>
+{% endblock %}

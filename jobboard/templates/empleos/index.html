@@ -1,0 +1,83 @@
+{% extends "base.html" %}
+
+{% block title %}Jobboard{% endblock %}
+
+{% block content %}
+<div class="row">
+  <div class="col-sm-12 col-md-12">
+    
+    <form action="" method="get" role="search" class="form-group">
+      <div class="input-group input-group-hg input-group-rounded">
+        <input type="text" name="q" value="{{ q }}"
+               class="form-control"
+               placeholder="Buscar 'css', 'javascript', 'ruby'…">
+        <span class="input-group-btn">
+          <button type="submit" class="btn"><i class="fa fa-search"></i>&nbsp; Buscar</button>
+        </span>
+      </div>
+    </form>
+
+    <h1 class="page-header"
+        style="border-bottom: 0 none; color: #D35400; font-size: 24px;">Empleos: Programación, Diseño y Negocios</h1>
+
+    {% if empleos_list %}
+      <div class="table-responsive">
+        <table class="table table-striped table-hover">
+          <!--<thead>-->
+            <!--<tr>-->
+              <!--<th></th>-->
+              <!--<th></th>-->
+              <!--<th></th>-->
+              <!--<th></th>-->
+            <!--</tr>-->
+          <!--</thead>-->
+          <tbody>
+            {% for empleo in empleos_list %}
+              <tr>
+                  <td>
+                      <a href="{% url "empleos:detail" pk=empleo.id slug=empleo.slug %}"
+                         class="lista-empleos-nombre-empresa">{{ empleo.nombre_empresa }}</a>
+                      &nbsp;&nbsp;<a href="{% url "empleos:detail" pk=empleo.id slug=empleo.slug %}"
+                                     class="lista-empleos-titulo">{{ empleo.titulo }}</a>
+                  </td>
+                  <td>
+                      <small class="lista-empleos-fecha-publicacion pull-right">
+                          {{ empleo.fecha_creado | date:"j-F" }}
+                      </small></td>
+              </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+
+
+        <nav>
+          <ul class="pagination">
+              {% if page_obj.has_previous %}
+                <li class="previous">
+                    <a href="?page={{ page_obj.previous_page_number }}">
+                        <span aria-hidden="true">&laquo;</span></a>
+                </li>
+              {% endif %}
+                {% for page in page_obj.paginator.page_range %}
+                    {% if page == page_obj.number %}
+                      <li class="active"><a href="?page={{ page }}">{{ page }}</a></li>
+                    {% else %}
+                      <li><a href="?page={{ page }}">{{ page }}</a></li>
+                    {% endif %}
+                {% endfor %}
+            {% if page_obj.has_next %}
+                <li class="next"><a href="?page={{ page_obj.next_page_number }}" class="fui-arrow-right">
+                    <span aria-hidden="true">&raquo;</span>
+                </a></li>
+            {% endif %}
+          </ul>
+        </nav>
+
+
+      </div>
+    {% else %}
+      <p>No hay empleos publicados.</p>
+    {% endif %}
+  </div>
+</div>
+{% endblock %}

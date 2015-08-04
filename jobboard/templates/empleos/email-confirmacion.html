@@ -1,0 +1,20 @@
+<p>Hola,</p>
+<p>Hemos publicado tu oferta de empleo en nuestra bolsa de trabajo.</p>
+
+<strong>DATOS DEL EMPLEO</strong>
+<p><strong>Fecha:</strong> {{ empleo.fecha_creado | date:"SHORT_DATE_FORMAT" }}</p>
+<p><strong>Título:</strong> {{ empleo.titulo }}</p>
+<p><strong>Categoría:</strong> {{ empleo.categoria.nombre }}</p>
+<p><strong>Ciudad:</strong> {{ empleo.ciudad.nombre }}</p>
+<p><strong>Descripción del empleo:</strong><br>
+{{ empleo.descripcion|linebreaks }}</p>
+<p><strong>Cómo la gente se postulará a este empleo:</strong><br>
+{{ empleo.forma_contacto }}</p>
+<p><strong>Empresa:</strong> {{ empleo.nombre_empresa }}</p>
+<p><strong>Email:</strong> {{ empleo.email_empresa }}</p>
+<p><strong>Teléfono:</strong> {{ empleo.telefono_empresa }}</p>
+<p><strong>Sitio Web:</strong> <a href="{{ empleo.url_empresa }}">{{ empleo.url_empresa }}</a></p>
+
+<p>Para ver la publicación haga click en el enlace:<br>
+<a href="{{ empleo.get_absolute_url }}">{{ empleo.get_absolute_url }}</a>
+</p>
